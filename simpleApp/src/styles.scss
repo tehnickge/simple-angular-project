@@ -1,3 +1,42 @@
+$theme: "light";
+$background-color-light: #FFEFFF;
+
 body {
-  background-color: black;
+  display: flex;
+  box-sizing: border-box;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+
+@if ($theme == "dark") {
+  body {
+    background-color: black;
+  }
+}
+@else {
+  body {
+    background-color: #ffffff74;
+  }
+}
+
+.container {
+  input {
+    margin: 15px 15px;
+  }
+  position: relative;
+  box-sizing: border-box;
+  justify-content: center;
+  align-items: center;
+  max-width: 1276px;
+}
+
+.test {
+min-width: 2rem;
+min-height: 2rem;
+box-sizing: border-box;
+background: rgb(255,0,245);
+background: radial-gradient(circle, rgba(255,0,245,1) 0%, rgba(255,0,0,1) 100%);
 }
