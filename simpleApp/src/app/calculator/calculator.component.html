@@ -1,17 +1,48 @@
-<div class="container">
-  <p>calculator works!</p>
-  <ul>
-    <li><button>0</button></li>
-    <li><button>1</button></li>
-    <li><button>2</button></li>
-    <li><button>3</button></li>
-    <li><button>4</button></li>
-    <li><button>5</button></li>
-    <li><button>6</button></li>
-    <li><button>7</button></li>
-    <li><button>8</button></li>
-    <li><button>9</button></li>
-    <li><button>+</button></li>
-    <li><button>-</button></li>
-  </ul>
+<div class="calculator">
+  @for (group of calcGroups; track group; let iter = $index) {
+  <div>
+    <select [(ngModel)]="group.first.modifier">
+      @for (mod of calcModifiers | keyvalue; track $index) {
+      <option [value]="mod.value">{{ mod.value }}</option>
+      }
+    </select>
+    <input
+      type="number"
+      class="calculator__input"
+      [(ngModel)]="group.first.value"
+    />
+    <select [(ngModel)]="group.operation">
+      @for (operation of calcCalcOperations | keyvalue; track $index) {
+      <option [value]="operation.value">{{ operation.value }}</option>
+      }
+    </select>
+    <select [(ngModel)]="group.second.modifier">
+      @for (mod of calcModifiers | keyvalue; track $index) {
+      <option [value]="mod.value">{{ mod.value }}</option>
+      }
+    </select>
+    <input
+      type="number"
+      class="calculator__input"
+      [(ngModel)]="group.second.value"
+    />
+    @if (operationsBetweenGroups.length > iter) {
+    <select [(ngModel)]="operationsBetweenGroups[iter - 1]">
+      @for (operation of calcCalcOperations | keyvalue; track $index) {
+      <option [value]="operation.value">{{ operation.value }}</option>
+      }
+    </select>
+    }
+
+    <button (click)="removeGroup(iter)">del group</button>
+  </div>
+  }
+  <span class="calculator__result">{{ result ? result : "enter calc" }}</span>
+  <div>
+    @for (item of history; track $index) {
+    <div>{{ $index + 1 }} {{ item }}</div>
+    }
+  </div>
+  <button (click)="calcGroup()">calc</button>
+  <button (click)="addGroup()">add group</button>
 </div>
