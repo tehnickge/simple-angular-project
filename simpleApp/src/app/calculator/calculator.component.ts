@@ -6,75 +6,70 @@ import { group } from 'console';
 interface ICalcGroup {
   first: ICalcVar;
   second: ICalcVar;
-  operation: CalcOperations; 
+  operation: CalcOperations;
 }
 
 interface ICalcVar {
   value: number;
   modifier: CalcModifiers;
 }
-enum CalcOperations  {
-  plus = '+',    
+enum CalcOperations {
+  plus = '+',
   minus = '-',
   multiply = '*',
-  divide = '/'
-} 
+  divide = '/',
+}
 
 enum CalcModifiers {
   none = 'none',
   sin = 'sin',
   cos = 'cos',
-  square = 'square'
+  square = 'square',
 }
-
 
 @Component({
   selector: 'app-calculator',
   standalone: true,
-  imports: [
-    FormsModule,
-    KeyValuePipe
-  ],
+  imports: [FormsModule, KeyValuePipe],
   templateUrl: './calculator.component.html',
-  styleUrl: './calculator.component.scss'
+  styleUrl: './calculator.component.scss',
 })
 export class CalculatorComponent {
-  
   public calcCalcOperations = CalcOperations;
   public calcModifiers = CalcModifiers;
   public calcGroups: ICalcGroup[] = [
     {
       first: {
         value: 1,
-        modifier: CalcModifiers.none
+        modifier: CalcModifiers.none,
       },
       second: {
         value: 1,
-        modifier: CalcModifiers.none
+        modifier: CalcModifiers.none,
       },
-      operation: CalcOperations.multiply
-    }
-  ]
+      operation: CalcOperations.multiply,
+    },
+  ];
 
   public addGroup(): void {
     this.calcGroups.push({
       first: {
         value: 0,
-        modifier: CalcModifiers.none
+        modifier: CalcModifiers.none,
       },
       second: {
         value: 0,
-        modifier: CalcModifiers.none
+        modifier: CalcModifiers.none,
       },
-      operation: CalcOperations.plus
-    })
+      operation: CalcOperations.plus,
+    });
 
     this.operationsBetweenGroups.push(CalcOperations.plus);
   }
 
   public removeGroup(index: number): void {
-    this.calcGroups.splice(index,1)
-   }
+    this.calcGroups.splice(index, 1);
+  }
 
   public history: string[] = [];
   public operationsBetweenGroups: CalcOperations[] = [];
@@ -87,21 +82,40 @@ export class CalculatorComponent {
     let tempHistory: string[] = [];
 
     this.calcGroups.forEach((group, index) => {
-      if(index === 0) {
-        result = this.calc(this.calcValueWithModifier(group.first),this.calcValueWithModifier(group.second),group.operation);
+      if (index === 0) {
+        result = this.calc(
+          this.calcValueWithModifier(group.first),
+          this.calcValueWithModifier(group.second),
+          group.operation
+        );
       } else {
-        let tempResult = this.calc(this.calcValueWithModifier(group.first),this.calcValueWithModifier(group.second),group.operation);
-        result = this.calc(result,tempResult, this.operationsBetweenGroups[index - 1])
+        let tempResult = this.calc(
+          this.calcValueWithModifier(group.first),
+          this.calcValueWithModifier(group.second),
+          group.operation
+        );
+        result = this.calc(
+          result,
+          tempResult,
+          this.operationsBetweenGroups[index - 1]
+        );
       }
 
-      
       tempHistory.push(`
       (
-        ${group.first.modifier !== this.calcModifiers.none ? group.first.modifier : ''} ${group.first.value}
+        ${
+          group.first.modifier !== this.calcModifiers.none
+            ? group.first.modifier
+            : ''
+        } ${group.first.value}
         ${group.operation}
-        ${group.second.modifier !== this.calcModifiers.none ? group.second.modifier : ''} ${group.second.value}
+        ${
+          group.second.modifier !== this.calcModifiers.none
+            ? group.second.modifier
+            : ''
+        } ${group.second.value}
       )
-        `)
+        `);
     });
 
     tempHistory.push(`${result}`);
@@ -109,20 +123,25 @@ export class CalculatorComponent {
     this.result = result;
   }
 
-  public calcValueWithModifier(value: ICalcVar) { 
-    switch(value.modifier) {
+  public calcValueWithModifier(value: ICalcVar) {
+    switch (value.modifier) {
       case CalcModifiers.none:
         return value.value;
       case CalcModifiers.cos:
         return Math.cos(value.value);
       case CalcModifiers.sin:
         return Math.sin(value.value);
-      case CalcModifiers.square: 
-        return Math.pow(value.value,2);    }
+      case CalcModifiers.square:
+        return Math.pow(value.value, 2);
+    }
   }
 
-  public calc(first: number, second: number, operation: CalcOperations): number {
-    switch(operation) {
+  public calc(
+    first: number,
+    second: number,
+    operation: CalcOperations
+  ): number {
+    switch (operation) {
       case CalcOperations.plus:
         return first + second;
       case CalcOperations.minus:
