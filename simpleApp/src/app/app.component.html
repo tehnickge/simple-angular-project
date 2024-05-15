@@ -1,9 +1,11 @@
+<navigation></navigation>
+
 <div class="container">
 <h1>даже и не старался </h1>
 <span>{{ title }}</span>
 <input [title]="title" [(ngModel)]="title" />
 <div class="test"></div>
 <button (click)="showMessage()">click me</button>
-
-
 </div>
+
+<router-outlet></router-outlet>
