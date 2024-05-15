@@ -29,8 +29,7 @@ enum CalcModifiers {
 
 @Component({
   selector: 'app-calculator',
-  standalone: true,
-  imports: [FormsModule, KeyValuePipe],
+  standalone: false,
   templateUrl: './calculator.component.html',
   styleUrl: './calculator.component.scss',
 })

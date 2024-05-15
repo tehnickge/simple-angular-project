@@ -1,14 +1,15 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { CalculatorComponent } from "./calculator/calculator.component";
+import { CalculatorComponent } from "./calculator/components/calculator.component";
 import { FormsModule } from '@angular/forms';
+import { CalculatorModule } from './calculator/calculator.module';
 
 @Component({
     selector: 'app-root',
     standalone: true,
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss',
-    imports: [RouterOutlet, CalculatorComponent,FormsModule]
+    imports: [RouterOutlet, FormsModule, CalculatorModule]
 })
 export class AppComponent {
   public title = 'hello';
