@@ -10,7 +10,7 @@ import { ErrorPageComponent } from './components/error-page/error-page.component
     standalone: true,
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss',
-    imports: [RouterOutlet, FormsModule, CalculatorModule, Navigation,ErrorPageComponent]
+    imports: [RouterOutlet, FormsModule, CalculatorModule, Navigation, ErrorPageComponent, ]
 })
 export class AppComponent {
   public title = 'hello';

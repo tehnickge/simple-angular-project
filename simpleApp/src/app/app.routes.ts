@@ -1,6 +1,4 @@
 import { Routes } from '@angular/router';
-import { CalculatorModule } from './calculator/calculator.module';
-import { AppComponent } from './app.component';
 import { CalculatorComponent } from './calculator/components/calculator.component';
 import { ErrorPageComponent } from './components/error-page/error-page.component';
 
@@ -11,12 +9,14 @@ export const routes: Routes = [
         component: CalculatorComponent
     },
     {
-        title: "dom",
-        path: "",
-        component: AppComponent
+        path: "", redirectTo: "calculator", pathMatch:'full'
     },
     {
-        title: "dom",
+        path: 'object-list',
+        loadChildren: () => import('./object-list/object-list.module').then((m) => m.ObjectListModule)
+    },
+    {
+        title: "404",
         path: "**",
         component: ErrorPageComponent
     }
