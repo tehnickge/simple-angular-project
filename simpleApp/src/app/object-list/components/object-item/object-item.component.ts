@@ -1,6 +1,6 @@
 import { anyObjects, AnyObjects } from './../list/object-list.component';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 
 @Component({
@@ -11,9 +11,14 @@ import { ActivatedRoute, Params } from '@angular/router';
 })
 export class ObjectItemComponent implements OnInit {
   
-  public object?: AnyObjects 
+  constructor(private router: Router, private route: ActivatedRoute) { }
+  
+  public object?: AnyObjects;
 
-  constructor(private route: ActivatedRoute) {}
+  public redirectToList() {
+    this.router.navigate(["object-list"]);
+   }
+  
   
   ngOnInit(): void {
       this.route.params.subscribe((params: Params) => {

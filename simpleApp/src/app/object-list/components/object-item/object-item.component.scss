@@ -1,0 +1,9 @@
+.active_link {
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 22px;
+    &:hover {
+        color: rgb(1, 20, 150);
+    }
+}   
