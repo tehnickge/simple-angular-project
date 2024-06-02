@@ -37,6 +37,11 @@ export const anyObjects: AnyObjects[] = [
     id: 4,
     title: "some like",
     content: "the cure "
+  },
+  {
+    id: 5,
+    title: "some like vodka",
+    content: "bugs"
   }
 ]
 
