@@ -1,33 +1,31 @@
-import { AfterViewInit, Directive, ElementRef, HostBinding, HostListener, Input } from '@angular/core';
+import { Directive, Input, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
 
 @Directive({
-  selector: '[myChangeColor]'
+  selector: '[myIf]'
 })
-export class MyChangeColorDirectiveDirective implements AfterViewInit {
+export class MyIfDirectiveDirective implements OnInit {
 
-  @HostBinding('style.color') color: string = 'purple';
+  private _show = false;
 
-  @HostBinding('style.background') background: string = 'transparent';
-
-  @HostListener('mouseenter') handleEnter(): void {
-    this.background = this.getChangeColor();
+  @Input() set myIf(show: boolean) {
+    this._show = show;
+    this.displayTemplate();
   }
 
-  @HostListener('mouseleave') handleLeave(): void {
-    this.background = 'transparent';
+  constructor(
+    private vcr: ViewContainerRef,
+    private templateRef: TemplateRef<unknown>
+  ) { }
+
+  ngOnInit(): void {
+    this.displayTemplate();
   }
 
-  constructor() {
-  }
-
-  ngAfterViewInit(): void {
-    setInterval(() => {
-      this.color = this.getChangeColor();
-    }, 2500)
-  }
-
-  private getChangeColor(): string {
-    return '#' + Math.floor(Math.random() * 16777215).toString(16);
+  private displayTemplate() {
+    this.vcr.clear();
+    if (this._show) {
+      this.vcr.createEmbeddedView(this.templateRef);
+    }
   }
 
 }

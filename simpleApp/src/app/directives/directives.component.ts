@@ -1,14 +1,12 @@
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
 
 @Component({
-  selector: 'app-directives',
-  templateUrl: './directives.component.html',
-  styleUrl: './directives.component.scss'
+  selector: "app-directives",
+  templateUrl: "./directives.component.html",
+  styleUrl: "./directives.component.scss",
 })
 export class DirectivesPageComponent {
-
   // ngFor
-
 
   // ngIf
 
@@ -17,12 +15,9 @@ export class DirectivesPageComponent {
   //ngSwitch
 
   // ngStyle
-
   public elementStyle: any = {
-    color: 'red',
+    color: "red",
     opacity: 0.5,
-  }
-
+  };
   // ngClass
-
 }
