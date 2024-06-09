@@ -1,10 +1,8 @@
 import {
   AfterViewInit,
   Directive,
-  ElementRef,
   HostBinding,
   HostListener,
-  Input,
 } from '@angular/core';
 
 @Directive({
@@ -23,7 +21,7 @@ export class MyChangeColorDirectiveDirective implements AfterViewInit {
     this.background = 'transparent';
   }
 
-  constructor() {}
+  constructor() { }
 
   ngAfterViewInit(): void {
     setInterval(() => {
