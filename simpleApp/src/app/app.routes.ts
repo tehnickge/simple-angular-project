@@ -19,6 +19,11 @@ export const routes: Routes = [
       import('./object-list/object-list.module').then(
         (m) => m.ObjectListModule
       ),
+  }, 
+  {
+    path: 'requests',
+    loadChildren: () => import('./requests/request-module.module').then((m) => m.RequestModule),
+    // canActivate: [isLoggedGuardFn],
   },
   {
     path: 'directives',
