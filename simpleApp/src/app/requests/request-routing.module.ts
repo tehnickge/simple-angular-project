@@ -3,20 +3,19 @@ import { RouterModule, Routes } from '@angular/router';
 import { PostListComponent } from './components/post-list/post-list.component';
 import { PostItemComponent } from './components/post-item/post-item.component';
 
-
 const routes: Routes = [
-    {
-        path: '',
-        component: PostListComponent,
-    },
-    {
-        path: 'id',
-        component: PostItemComponent
-    }
+  {
+    path: '',
+    component: PostListComponent,
+  },
+  {
+    path: ':id',
+    component: PostItemComponent,
+  },
 ];
 
 @NgModule({
-    imports: [RouterModule.forChild(routes)],
-    exports: [RouterModule]
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
 })
-export class RequestRouting { }
+export class RequestRouting {}
