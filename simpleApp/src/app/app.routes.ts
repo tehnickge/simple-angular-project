@@ -26,6 +26,11 @@ export const routes: Routes = [
       import('./directives/directives.module').then((m) => m.DirectivesModule),
   },
   {
+    path: 'life-cycle',
+    loadChildren: () =>
+      import('./lifecycle/life-cycle.module').then((m) => m.LifeCycleModule),
+  },
+  {
     title: '402',
     path: '**',
     component: ErrorPageComponent,
