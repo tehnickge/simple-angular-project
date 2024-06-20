@@ -29,9 +29,9 @@ enum CalcModifiers {
 
 @Component({
   selector: 'app-calculator',
-  standalone: false,
   templateUrl: './calculator.component.html',
   styleUrl: './calculator.component.scss',
+  standalone: false,
 })
 export class CalculatorComponent {
   public calcCalcOperations = CalcOperations;

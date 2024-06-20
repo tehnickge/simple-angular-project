@@ -1,0 +1,8 @@
+@if (postItem$ | async; as post) {
+<div class="container">
+  <span style="flex-wrap: nowrap">id: {{ post.id }}</span>
+  <span>{{ post.title }}</span>
+  <span>{{ post.body }}</span>
+</div>
+<button (click)="redirectToList()">go back!</button>
+}

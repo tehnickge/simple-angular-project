@@ -1,0 +1,7 @@
+@if (posts$ | async; as posts) { @for(post of posts; track post.id) {
+<div class="post" (click)="redirectToItem(post.id)">
+  <span class="title"> {{ post.title }} </span>
+  <span> {{ post.body }} </span>
+  <span> id: {{ post.id }} </span>
+</div>
+} }
