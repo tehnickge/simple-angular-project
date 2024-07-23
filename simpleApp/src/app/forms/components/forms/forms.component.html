@@ -1,0 +1,38 @@
+<div [formGroup]="myForm">
+  <div>
+    <label for="login"></label>
+    <input type="text" id="login" formControlName="login" />
+    @if(!myForm.get(['login'])?.valid && myForm.controls.login.touched) {<small
+      class="error-msg"
+      >это поле обязательно для ввода </small
+    >}
+  </div>
+  <div>
+    <label for="email"></label>
+    <input type="text" id="email" formControlName="email" />
+    @if(!myForm.get(['email'])?.valid && myForm.controls.email.touched) {<small
+      class="error-msg"
+      >это поле обязательно для воода </small
+    >}
+  </div>
+  <div>
+    <label for="password"></label>
+    <input type="text" id="password" formControlName="password" />
+    @if(!myForm.get(['password'])?.valid && myForm.controls.password.touched)
+    {<small class="error-msg">это поле обязательно для воода </small>}
+  </div>
+
+  <button (click)="handleValue()">sand data</button>
+
+  <div class="login-form" [formGroup]="validatorsForm">
+    <h2>custom validators</h2>
+    <div>
+      <label for="mail"></label>
+      <input type="text" id="mail" formControlName="email" />
+      @if(!validatorsForm.get(['email'])?.valid &&
+      validatorsForm.controls.email.touched) {<small class="error-msg"
+        >ты не прав </small
+      >}
+    </div>
+  </div>
+</div>

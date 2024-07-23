@@ -19,16 +19,27 @@ export const routes: Routes = [
       import('./object-list/object-list.module').then(
         (m) => m.ObjectListModule
       ),
-  }, 
+  },
   {
     path: 'requests',
-    loadChildren: () => import('./requests/request-module.module').then((m) => m.RequestModule),
+    loadChildren: () =>
+      import('./requests/request-module.module').then((m) => m.RequestModule),
     // canActivate: [isLoggedGuardFn],
   },
   {
     path: 'directives',
     loadChildren: () =>
       import('./directives/directives.module').then((m) => m.DirectivesModule),
+  },
+  {
+    path: 'pipes',
+    loadChildren: () =>
+      import('./pipes/pipes.module').then((m) => m.PipeModule),
+  },
+  {
+    path: 'forms',
+    loadChildren: () =>
+      import('./forms/forms.module').then((m) => m.FormsUIModule),
   },
   {
     path: 'life-cycle',
