@@ -24,8 +24,14 @@
 
   <button (click)="handleValue()">sand data</button>
 
-  <div class="login-form" [formGroup]="validatorsForm">
-    <h2>custom validators</h2>
+  <div class="validatorsForm" [formGroup]="validatorsForm">
+    <h2>custom validatorsForm</h2>
+    <div>
+      @if (validatorsForm.errors?.['PasswordDoNotMatch'] &&
+      validatorsForm.controls.password_two.touched) {
+      <div><small> пароли не совподают </small></div>
+      }
+    </div>
     <div>
       <label for="mail"></label>
       <input type="text" id="mail" formControlName="email" />
@@ -33,6 +39,14 @@
       validatorsForm.controls.email.touched) {<small class="error-msg"
         >ты не прав </small
       >}
+      <div style="display: flex; flex-direction: column">
+        <label for="password_one">введите пароль</label>
+        <input type="text" id="password_one" formControlName="password_one" />
+      </div>
+      <div style="display: flex; flex-direction: column">
+        <label for="password_two">введите пароль еще раз</label>
+        <input type="text" id="password_two" formControlName="password_two" />
+      </div>
     </div>
   </div>
 </div>
